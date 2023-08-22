@@ -124,8 +124,23 @@ function llenarSelectYear() {
 function filtrarAuto() {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtraColor);
 
-    //console.log(resultado);
-    mostrarAutos(resultado);
+    if(resultado.length) {
+        // Funcion mostrar filtros
+        mostrarAutos(resultado);
+    } else {
+        // Fncion mostrar mensaje cuando no hay nada
+        noResultado();
+    }
+}
+
+// Mostrar mensaje en caso de que no encuentre ningun filtro
+function noResultado() {
+    limppiarHTML();
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No hay resultado';
+
+    resultado.appendChild(noResultado)
 }
 
 // Filtrar por marca
